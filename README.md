@@ -1,2 +1,2 @@
 # MyTimer
-A fully functional react native timer app
+A fully functional react native stopwatch app
