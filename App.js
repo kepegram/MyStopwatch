@@ -1,20 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
+import styles from './src/styles';
+import timer, {initialTime} from './src/timer';
+import {Component} from 'react';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+export default class App extends Component {
+  state = initialTime;
+
+  OnStart = () => {
+    this.setState(state => timer());
+  };
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>{this.state.currentValue}</Text>
+        <View style={styles.row}>
+          <TouchableOpacity
+            style={styles.lapButton}
+            onPress={() => console.log('you have clicked lap')}>
+            <Text style={styles.buttonText}>Lap</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.startButton}
+            onPress={() => console.log('you have clicked start')}>
+            <Text style={styles.buttonText}>Start</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
